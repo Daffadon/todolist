@@ -31,7 +31,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, todos, setTodos, done, setDon
   }
   return (
     <div className="bg-orange-300 rounded-xl flex items-center justify-between px-3 py-4">
-      <p className="font-bold text-xl">{todo.name}</p>
+      <p className="font-bold text-xl w-9/12 truncate">{todo.name}</p>
       <div className="flex gap-2">
         <button onClick={deleteHandler.bind(this, todo)}>
           <AiFillDelete size={35} className="hover:text-red-500 transition-all duration-300" />
