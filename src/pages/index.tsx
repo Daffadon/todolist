@@ -3,7 +3,7 @@ import InputField from "./components/InputField";
 import TodoItem from "./components/TodoItem";
 
 export interface Todo {
-  id: number;
+  id: number|string;
   name: string;
 }
 
