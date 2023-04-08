@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Todo } from "../index";
 import { AiFillDelete } from "react-icons/ai"
 import { BsCheckLg, BsPencilSquare } from "react-icons/bs"
 import { MdRestore } from "react-icons/md"
+import InputField from "./InputField";
 interface TodoItemProps {
   todo: Todo
   todos: Todo[]
@@ -12,6 +13,8 @@ interface TodoItemProps {
   isDone: boolean
 }
 const TodoItem: React.FC<TodoItemProps> = ({ todo, todos, setTodos, done, setDone, isDone }) => {
+  const [actToChange, setActToChange] = useState<string>(todo.name)
+  const [isEdit, setIsEdit] = useState<boolean>(false);
   const deleteHandler = (itemToDelete: Todo) => {
     if (!isDone) {
       const newTodos = todos.filter((item) => {
@@ -29,21 +32,60 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, todos, setTodos, done, setDon
     setDone(prev => ([...prev, itemToBeDone]))
     deleteHandler(itemToBeDone);
   }
+  const saveHandler = () => {
+    const updatedToDo = {
+      ...todo,
+      name: actToChange
+    };
+    const editedIndex = todos.findIndex(toChange => {
+      return toChange.id = todo.id;
+    })
+    const newTodos = [...todos];
+    newTodos[editedIndex] = updatedToDo;
+    setTodos(newTodos);
+
+    setIsEdit(false);
+  }
   return (
     <div className="bg-orange-300 rounded-xl flex items-center justify-between px-3 py-4">
-      <p className="font-bold text-xl w-9/12 truncate">{todo.name}</p>
+      {isEdit ?
+        <form onSubmit={saveHandler} className="flex justify-center items-center">
+          <input
+            type="text"
+            name="activity"
+            value={actToChange}
+            onChange={(e) => {
+              setActToChange(e.target.value);
+            }}
+            className="w-full rounded h-10 bg-neutral-200 px-3 border-2 outline-none focus:border-blue-500 font-bold border-transparent focus:border-solid transition-all" />
+        </form>
+        :
+        <p className="font-bold text-xl w-9/12 truncate">{todo.name}</p>
+      }
       <div className="flex gap-2">
         <button onClick={deleteHandler.bind(this, todo)}>
           <AiFillDelete size={35} className="hover:text-red-500 transition-all duration-300" />
         </button>
         {!isDone ?
           <>
-            <button>
-              <BsPencilSquare size={35} className="hover:text-blue-700 transition-all duration-300" />
-            </button>
-            <button onClick={doneHandler.bind(this, todo)}>
-              <BsCheckLg size={35} className="hover:text-green-600 transition-all duration-300" />
-            </button>
+            {!isEdit ?
+              <>
+                <button onClick={() => {
+                  setIsEdit(true);
+                }}>
+                  <BsPencilSquare size={35} className="hover:text-blue-700 transition-all duration-300" />
+                </button>
+                <button onClick={doneHandler.bind(this, todo)}>
+                  <BsCheckLg size={35} className="hover:text-green-600 transition-all duration-300" />
+                </button>
+              </>
+              :
+              <>
+                <button onClick={saveHandler}>
+                  <BsCheckLg size={35} className="hover:text-green-600 transition-all duration-300" />
+                </button>
+              </>
+            }
           </>
           :
           <>

@@ -28,7 +28,7 @@ export default function Home(): JSX.Element {
           <InputField
             activity={activity}
             setActivity={setActivity}
-            addHandler={addHandler} />
+            doFunction={addHandler} />
         </div>
         <div className="flex justify-center items-center">
           <p className="text-center font-extrabold w-10/12 rounded-lg bg-yellow-500 py-3 text-white text-3xl mt-5">TO DO</p>

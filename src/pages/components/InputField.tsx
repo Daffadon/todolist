@@ -2,13 +2,13 @@ import React from "react";
 type Props = {
   activity: string;
   setActivity: React.Dispatch<React.SetStateAction<string>>;
-  addHandler: (e: React.FormEvent) => void;
+  doFunction: (e: React.FormEvent) => void;
 };
 
-const InputField: React.FC<Props> = ({ activity, setActivity, addHandler }) => {
+const InputField: React.FC<Props> = ({ activity, setActivity, doFunction }) => {
   return (
     <form
-      onSubmit={addHandler}
+      onSubmit={doFunction}
       className="min-h-[15vh] w-full flex justify-center items-center flex-col">
       <input
         type="text"
