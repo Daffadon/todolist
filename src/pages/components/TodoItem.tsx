@@ -38,12 +38,12 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, todos, setTodos, done, setDon
       name: actToChange
     };
     const editedIndex = todos.findIndex(toChange => {
-      return toChange.id = todo.id;
+      return toChange.id === todo.id;
     })
+    console.log(editedIndex)
     const newTodos = [...todos];
     newTodos[editedIndex] = updatedToDo;
     setTodos(newTodos);
-
     setIsEdit(false);
   }
   return (
