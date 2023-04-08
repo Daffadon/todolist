@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Todo } from "../index";
 import { AiFillDelete } from "react-icons/ai"
 import { BsCheckLg, BsPencilSquare } from "react-icons/bs"
 import { MdRestore } from "react-icons/md"
-import InputField from "./InputField";
 interface TodoItemProps {
   todo: Todo
   todos: Todo[]
@@ -40,11 +39,14 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, todos, setTodos, done, setDon
     const editedIndex = todos.findIndex(toChange => {
       return toChange.id === todo.id;
     })
-    console.log(editedIndex)
     const newTodos = [...todos];
     newTodos[editedIndex] = updatedToDo;
     setTodos(newTodos);
     setIsEdit(false);
+  }
+  const recoverHandler = (itemToRecover: Todo) => {
+    setTodos(prev => ([...prev, itemToRecover]))
+    deleteHandler(itemToRecover);
   }
   return (
     <div className="bg-orange-300 rounded-xl flex items-center justify-between px-3 py-4">
@@ -89,7 +91,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, todos, setTodos, done, setDon
           </>
           :
           <>
-            <button>
+            <button onClick={recoverHandler.bind(this,todo)}>
               <MdRestore size={35} className="hover:text-blue-700 transition-all duration-300" />
             </button>
           </>
