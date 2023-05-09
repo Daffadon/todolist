@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Todo } from "../index";
+import { Todo } from "../../src/pages/index";
 import { AiFillDelete } from "react-icons/ai"
 import { BsCheckLg, BsPencilSquare } from "react-icons/bs"
 import { MdRestore } from "react-icons/md"
@@ -91,7 +91,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, todos, setTodos, done, setDon
           </>
           :
           <>
-            <button onClick={recoverHandler.bind(this,todo)}>
+            <button onClick={recoverHandler.bind(this, todo)}>
               <MdRestore size={35} className="hover:text-blue-700 transition-all duration-300" />
             </button>
           </>
