@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Todo } from "../../src/pages/index";
+import { Todo } from "../pages/index";
 import { AiFillDelete } from "react-icons/ai"
 import { BsCheckLg, BsPencilSquare } from "react-icons/bs"
 import { MdRestore } from "react-icons/md"

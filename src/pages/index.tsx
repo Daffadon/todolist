@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import InputField from "../../public/components/InputField";
-import TodoItem from "../../public/components/TodoItem";
+import InputField from "../components/InputField";
+import TodoItem from "../components/TodoItem";
 
 export interface Todo {
   id: number | string;

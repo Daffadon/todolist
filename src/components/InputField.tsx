@@ -17,7 +17,7 @@ const InputField: React.FC<Props> = ({ activity, setActivity, doFunction }) => {
         onChange={(e) => {
           setActivity(e.target.value);
         }}
-        className=" mt-5 w-[15rem] xl:w-1/4 rounded h-10 bg-neutral-200 px-3 border-2 outline-none focus:border-blue-500 font-bold border-transparent focus:border-solid transition-all" />
+        className=" mt-5 w-[15rem] xl:w-1/4 rounded h-10 bg-neutral-200 px-3 border-2 outline focus:border-blue-500 font-bold border-black focus:border-solid transition-all" />
       <button type="submit" className="mt-4 bg-amber-700 px-8 py-3 text-white font-extrabold rounded-lg">
         ADD
       </button>
